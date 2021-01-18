@@ -16,7 +16,7 @@ def tianna_json():
         json_info = json.load(json_data)
         return jsonify(json_info)
 
-@app.route('api/v1/movies')
+@app.route('/api/v1/movies')
 def all_movies():
     movies_path = os.path.join(app.static_folder, 'data', 'movies.json')
     with open(movies_path, 'r') as raw_json:
@@ -39,16 +39,16 @@ def search_title():
 
     if len(results) < 1:
         return "No Results Found"
-    return render_template("index.html", results = results)
+    return render_template("movielayout.html", results = results)
 
-@app.route('/index')
+@app.route('/movielayout')
 def index():
-    return render_template('/index.html')
+    return render_template('/movielayout.html')
 
 
 
 if __name__ == '__main__':
-    app.run(debug = True, host = '0.0.0.0')
+    app.run(debug = True, host = '127.0.0.1')
 
 
 
