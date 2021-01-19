@@ -31,7 +31,7 @@ def search_title():
         json_info = json.load(raw_json)
     results = []
     if 'title' in request.args:
-        title = requests.args['title']
+        title = request.args['title']
 
         for movie in json_info:
             if title in movie['title']:
