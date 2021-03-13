@@ -1,5 +1,5 @@
 from flask import Flask, render_template, current_app as current_app
-import request
+import requests
 from sense_hat import SenseHat
 
 sense = SenseHat()
