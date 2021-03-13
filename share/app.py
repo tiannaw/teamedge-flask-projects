@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def about():
-    return  "<p>Welcome to Tianna's my SenseHat Project<p/>"
+    return  render_template('index.html')
 
 @app.route('/message_input', methods = ['GET', 'POST'])
 def message_input():
