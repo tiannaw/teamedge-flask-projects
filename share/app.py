@@ -1,5 +1,4 @@
-from flask import Flask, render_template, current_app as current_app
-import requests
+from flask import Flask, render_template, request, current_app as current_app
 from sense_hat import SenseHat
 
 sense = SenseHat()
@@ -7,17 +6,19 @@ sense = SenseHat()
 app = Flask(__name__)
 
 @app.route('/')
-def about():
+def index():
     return  render_template('index.html')
 
-@app.route('/message_input', methods = ['GET', 'POST'])
-def message_input():
+@app.route('/success', methods = ['GET', 'POST'])
+def success():
     if request.method == 'POST':
-        user = request.form['fname']
-        return render_template('message.html', name = user)
+        user = request.form['message']
+        return render_template('success.html', name = user)
     else:
-        user = request.args.get('fname')
-        return render_template('message.html', name = user)
+        user = request.args.get('message')
+        return render_template('success.html', name = user)
+    
+        
 
 
 
