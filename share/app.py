@@ -9,16 +9,18 @@ app = Flask(__name__)
 def index():
     return  render_template('index.html')
 
-@app.route('/success', methods = ['GET', 'POST'])
-def success():
+@app.route('/message_input', methods = ['GET', 'POST'])
+def message_input():
     if request.method == 'POST':
         user = request.form['message']
-        return render_template('success.html', name = user)
+        return render_template('message_input.html', user = user)
     else:
         user = request.args.get('message')
-        return render_template('success.html', name = user)
+        return render_template('message_input.html', user = user)
     
-        
+@app.route('/view')
+def view():
+    return render_template('view.html')
 
 
 
