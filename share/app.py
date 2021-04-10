@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, current_app as current_app
 from sense_hat import SenseHat
+import sqlite3
 
 sense = SenseHat()
+
 
 app = Flask(__name__)
 
@@ -13,14 +15,39 @@ def index():
 def message_input():
     if request.method == 'POST':
         user = request.form['message']
-        return render_template('message_input.html', user = user)
+        name = request.form['name']
+
+        display = name + user
+
+        #connect to database and insert message and name 
+        conn = sqlite3.connect('.static/data/messages.db')
+        curs = conn.cursor()
+        curs.execute("INSERT INTO message(name, message) VALUES ((?), (?))")
+        conn.commit()
+        #close database connection
+        conn.close()
+
+        sense.show_message(display) 
+
+        return render_template('message_input.html', user = user, name = name)
+   
     else:
-        user = request.args.get('message')
-        return render_template('message_input.html', user = user)
+         user = request.args.get('message')
+         name = request.args.get('name')
+         return render_template('message_input.html', user = user, name = name)
     
-@app.route('/view')
+@app.route('/view', methods = ['GET', 'POST'])
 def view():
-    return render_template('view.html')
+    #connecting to database 
+    conn = sqlite3.connect('./static/data/messages.db')
+    curs = conn.cursor()
+    messages = []
+    rows = curs.execute("SELECT * from messages")
+    for row in rows:
+        message = {'name': row[0], 'message': row[1]}
+        messages.append(message)
+    conn.close()
+    return render_template('view.html', messages = messages)
 
 
 

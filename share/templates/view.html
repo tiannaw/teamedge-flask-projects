@@ -15,6 +15,13 @@
 </head>
 <body>
 
+    <h1>Here Are All the Messages</h1>
+    {% for message in messages %}
+        <p>{{message["message"]}} from {{message["name"]}}</p>
+        <form action = "/view" method= "post">
+            <input type = "hidden" name = "message" value = "{{message['message']}}"/>
+        </form>
+    {% endfor %}
     
 </body>
 </html>
