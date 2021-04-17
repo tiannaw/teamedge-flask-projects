@@ -20,9 +20,9 @@ def message_input():
         display = name + user
 
         #connect to database and insert message and name 
-        conn = sqlite3.connect('.static/data/messages.db')
+        conn = sqlite3.connect('./static/data/messages.db')
         curs = conn.cursor()
-        curs.execute("INSERT INTO message(name, message) VALUES ((?), (?))")
+        curs.execute("INSERT INTO message(name, message) VALUES ((?), (?))", (name, user))
         conn.commit()
         #close database connection
         conn.close()
