@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel= "stylesheet" href = "/static/style.css">
+
+    <style>
+        body{
+            background-color:tan;
+        }
+
+        h1{text-align: center;}
+        div{text-align: center;}
+
+    </style>
+
+
+</head>
+<body>
+
+   <h1>Set Your Reminder...</h1>
+
+   <div id = "wrap">
+       <div>
+           <form action = "reminder.html" method = 'post'>
+               <input type = "text" value = "reminder"><br>
+               <label for = "date">Sate A Date:</label>
+               <input type = "submit" value = "Save"></input><br>
+           </form>
+
+           <p>Any Affirmation for Today?</p>
+
+           <button id = "user">Type</button>
+
+           <p>X <span id = "outputUser"> ________________ </span></p>
+       </div>
+   </div>
+
+    
+    
+</body>
+</html>

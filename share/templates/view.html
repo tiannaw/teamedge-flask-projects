@@ -20,7 +20,7 @@
         <p>{{message["message"]}} from {{message["name"]}}</p>
         <form action = "/view" method= "post">
             <input type = "hidden" name = "message" value = "{{message['message']}}"/>
-            <input type = "button" value = "Go to Home" onclick ="history.back">
+            <input type = "button" value = "Go to Home" onclick = "history.back" >
         </form>
     {% endfor %}
     
