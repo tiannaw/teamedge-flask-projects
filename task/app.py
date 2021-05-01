@@ -17,10 +17,38 @@ scheduler.start()
 def index():
     return render_template('index.html')
 
-@app.route('/reminder')
+@app.route('/reminder', methods = ['GET', 'POST'])
 def reminder():
-    return render_template('/reminder.html')
+    if request.method == 'POST':
+        reminder = request.form['reminder']
+        setdate = request.form['setdate']
+        
+        display = reminder + setdate
 
+        #connecting to database
+        conn = sqlite3.connect('./static/data/tasks.db')
+        curs = conn.cursor()
+        curs.execute("INSERT INTO reminders(reminder, setdate) VALUES ((?), (?))", (reminder, setdate))
+        conn.commit()
+        #close database connection
+        conn.close()
+
+        sense.show_message(display)
+
+        return render_template('/reminder.html', reminder = reminder, setdate = setdate)
+    
+    else:
+         reminder = request.args.get('reminder')
+         setdate = request.args.get('setdate')
+    return render_template('/reminder.html', reminder = reminder, setdate = setdate)
+
+@app.route('/completed')
+def completed():
+    return render_template('/completed.html')
+
+@app.route('/deleted')
+def deleted():
+    return render_template('/delete.html')
 
 
 

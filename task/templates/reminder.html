@@ -12,7 +12,7 @@
         }
 
         h1{text-align: center;}
-        div{text-align: center;}
+        #wrap{text-align: center;}
 
     </style>
 
@@ -24,10 +24,13 @@
 
    <div id = "wrap">
        <div>
-           <form action = "reminder.html" method = 'post'>
+           <form action = "/reminder" id = "info" method = 'post'>
                <input type = "text" value = "reminder"><br>
-               <label for = "date">Sate A Date:</label>
-               <input type = "submit" value = "Save"></input><br>
+               <p></p>
+               <label for = "date">Sate A Date and Time:</label><br>
+               <p></p>
+               <input type = "datetime-local" id = "setdate"><br>
+               <input type = "submit" value = "Save"></input>
            </form>
 
            <p>Any Affirmation for Today?</p>
@@ -36,6 +39,18 @@
 
            <p>X <span id = "outputUser"> ________________ </span></p>
        </div>
+   </div>
+
+   <div id = "Tasks">
+       <h2>To-do...</h2>
+       <a href = "/completed">These are all the tasks you have already completed!</a>
+       <p>Check to see what you can complete below.</p>
+
+        <ul>
+            <li>
+                x
+            </li>
+        </ul>
    </div>
 
     
