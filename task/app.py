@@ -50,6 +50,10 @@ def completed():
 def deleted():
     return render_template('/delete.html')
 
+@app.route('/edit')
+def edit():
+    return render_template('/edit.html')
+
 
 
 
